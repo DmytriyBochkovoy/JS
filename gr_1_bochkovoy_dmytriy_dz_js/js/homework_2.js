@@ -1,5 +1,6 @@
-const kilometersInMeters = 1000;
-const inchesInInMeters = 0.025;
+const KILOMETRS_IN_METERS = 1000;
+const INCHES_IN_METERS = 0.025;
+const NUMBER_OF_WHEELS = 4;
 
 let N = prompt('Введите расстояние которое вы проехали в километрах');
 let D = prompt('Введите диаметр колеса автомобиля в дюймах');
@@ -11,11 +12,13 @@ if (isNaN(N) || isNaN(D)) {
     alert(`Параметры не верны! Введите численное значение.`);
     console.error('incorrect value');
 } else {
-    N = Number(N) * 1000; 
-    D = (Number(D) * 0.025) * Math.PI; 
+    N = N * KILOMETRS_IN_METERS; 
+    D = (D * INCHES_IN_METERS) * Math.PI; 
 
-    alert(`Ваше колесо сделало ${Math.floor(N / D)} об.`);
-    alert(`Суммарное значение оборотов всех колес ${Math.floor(N / D) * 4} об.`);
+    let rpkm = Math.floor(N / D)
+
+    alert(`Ваше колесо сделало ${rpkm} об.`);
+    alert(`Суммарное значение оборотов всех колес ${rpkm * NUMBER_OF_WHEELS} об.`);
 }
 
 let numberDays = prompt('Введите желаемое количество дней', 0)
