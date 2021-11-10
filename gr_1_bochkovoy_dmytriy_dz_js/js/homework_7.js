@@ -46,5 +46,4 @@ while (i <= maxCountOperations) {
     }
 }
 
-
 console.log(computationHistory);
