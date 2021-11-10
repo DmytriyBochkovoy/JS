@@ -31,7 +31,7 @@ function Calculation(options) {
 
 let computationHistory = []; //  Память выполненных операций.
 let maxCountOperations = 3; //  Ограничивает количество ввода. 
-let maxCountSavedOperations = 2; //  Ограничивает количество сохраненных операций 
+let maxCountSavedOperations = 3; //  Ограничивает количество сохраненных операций 
 let i = 1;
 
 while (i <= maxCountOperations) {
