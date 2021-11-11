@@ -11,17 +11,17 @@ div2.setAttribute( 'style', `background: green; ${arrrColorur[1]} margin-bottom:
 
 document.body.append(div1, div2)
 
-div1.addEventListener('mouseover', (event) => {
+div1.addEventListener('mouseover', () => {
     console.log(arrrColorur[0])
 })
-div2.addEventListener('mouseover', (event) => {
+div2.addEventListener('mouseover', () => {
     console.log(arrrColorur[1])
 })
 
-div1.addEventListener('click', (event) => {
+div1.addEventListener('click', () => {
     alert('Цвет прямоугольника красный')
 })
-div2.addEventListener('click', (event) => {
+div2.addEventListener('click', () => {
     alert('Цвет прямоугольника зеленый')
 })
 
