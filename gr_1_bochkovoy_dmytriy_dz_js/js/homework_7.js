@@ -6,6 +6,21 @@ function Calculation(options) {
     let date = new Date()
     let nameMatheOperator = ['Сложение', 'Вычитание', 'Умножение', 'Деление']
 
+
+    this.addition = function() {
+        return this.a + this.b;
+    }
+    this.subtraction = function() {
+        return this.a - this.b;
+    }
+    this.multiplication = function() {
+        return this.a * this.b;
+    }
+    this.division = function() {
+        return this.a / this.b;
+    }
+
+
     if (this.matheOperator === '+') {
         this.addition = this.a + this.b;
         getAddResult (this.addition, nameMatheOperator[0], this.a, this.b)
