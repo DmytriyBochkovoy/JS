@@ -1,64 +1,71 @@
 function Calculation(options) {
-    this.a = options.a;
-    this.b = options.b;
-    this.matheOperator = options.matheOperator;
 
-    let date = new Date()
-    let nameMatheOperator = ['Сложение', 'Вычитание', 'Умножение', 'Деление']
+    this.name = options.name;
 
-
-    this.addition = function() {
-        return this.a + this.b;
-    }
-    this.subtraction = function() {
-        return this.a - this.b;
-    }
-    this.multiplication = function() {
-        return this.a * this.b;
-    }
-    this.division = function() {
-        return this.a / this.b;
-    }
+    let date = new Date();
+    let nameMatheOperator = ['Сложение', 'Вычитание', 'Умножение', 'Деление'];
+    let computationHistory = [];
+    let maxCountSavedOperations = 2;
 
 
-    if (this.matheOperator === '+') {
-        this.addition = this.a + this.b;
-        getAddResult (this.addition, nameMatheOperator[0], this.a, this.b)
-    } else if (this.matheOperator === '-') {
-        this.subtraction = this.a - this.b;
-        getAddResult (this.subtraction, nameMatheOperator[1], this.a, this.b)
-    } else if (this.matheOperator === '*') {
-        this.multiplication = this.a * this.b;
-        getAddResult (this.multiplication, nameMatheOperator[2], this.a, this.b)
-    } else if (this.matheOperator === '/') {
-        this.division = this.a / this.b;
-        getAddResult (this.division, nameMatheOperator[3], this.a, this.b)
-    } else {
-        console.error('Введены неверные данные')
+    this.addition = function(...arg) {
+		let result = 0;
+		let arrayParameters = [];
+
+		for (let i = 0; i <= arg.length-1; i++) {
+			arrayParameters.push(arg[i])
+			result += arg[i];
+		}
+	
+		getAddResult (this.name, result, nameMatheOperator[0], arrayParameters)
+		return result
     }
 
-    function getAddResult (result, array, a, b) {
+    this.subtraction = function(a, b) {
+	let arrayParameters = [a, b]
+	let result = a - b;
+        getAddResult (this.name, result, nameMatheOperator[1], arrayParameters)
+	return result;
+    }
+
+    this.multiplication = function(...arg) {
+		let result = 1;
+		let arrayParameters = [];
+
+		for (let i = 0; i <= arg.length-1; i++) {
+			arrayParameters.push(arg[i])
+			result *= arg[i];
+		}
+	
+		getAddResult (this.name, result, nameMatheOperator[2], arrayParameters)
+		return result
+    }
+
+    this.division = function(a, b) {
+	let arrayParameters = [a, b]
+	let result = a / b;
+        getAddResult (this.name, result, nameMatheOperator[3], arrayParameters)
+	return result;
+    }	
+	
+    function getAddResult (name, result, array, par) {
         let dateString = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
         let timeString = `${date.getHours()}:${date.getMinutes()}`
-        computationHistory.push(`Выполнены вычисления(${dateString} ${timeString}) ${array} = ${result} (${a}, ${b})`);
-    } //   Формирует строку с параметрами математической операции и добавляет ее в массив выполненных операций.      
-}
-
-let computationHistory = []; //  Память выполненных операций.
-let maxCountOperations = 3; //  Ограничивает количество ввода. 
-let maxCountSavedOperations = 3; //  Ограничивает количество сохраненных операций 
-let i = 1;
-
-while (i <= maxCountOperations) {
-    i++;
-    calculator =  new Calculation({
-        a: +prompt('Введите первое значение', 0),
-        matheOperator: prompt('Выберите математическую операцию  из предложенных (+, -, *, /)'),
-        b: +prompt('Введите второе значение', 0),
-    });
-    if (computationHistory.length = maxCountSavedOperations) { 
-        computationHistory.shift(); // Проверка на длину массива, если длинна превысила допустимое значение то удаляется первая выполненная операция. 
+        return computationHistory.push(`${name} (${dateString} ${timeString}) ${array} = ${result} (${par.join(', ')})`);
     }
+
+    if (computationHistory.length = maxCountSavedOperations) { 
+        computationHistory.shift();
+    }
+
+    return console.log(computationHistory)
 }
 
-console.log(computationHistory);
+calculator =  new Calculation({
+	name: 'Мой калькулятор',
+});
+
+calculator.addition(5, 10, 20, 50, 25);
+calculator.subtraction(200, 95);
+calculator.multiplication(20, 10, 12, 2, 5);
+calculator.division(300, 6);
