@@ -7,11 +7,24 @@ fetch('https://jsonplaceholder.typicode.com/users')
 .then(async (json) => {
     let usersArray = json;
     let divArray = [];
+    let buttonArray = []
 
     function createElementsUsers() {
         document.body.setAttribute('style', 'display: flex; flex-wrap: wrap;')
+        
         let usersInfo = document.createElement('button');
         let usersClear = document.createElement('button');
+
+        usersInfo.innerHTML = 'information';
+        usersClear.innerHTML = 'to clear';
+
+        usersInfo.addEventListener('click', () => {
+            alert('geo: ' + 'lat: ' + user.address.geo.lat + ', lng: ' + user.address.geo.lng)
+        })
+
+        usersClear.addEventListener('click', () => {
+            divArray[1].remove();
+        })
 
         for (let i = 0; i <= usersArray.length - 1; i++ ) {
             user = usersArray[i];
@@ -28,10 +41,9 @@ fetch('https://jsonplaceholder.typicode.com/users')
                 Address - ${usersArray[i].address.street}.
                 City - ${usersArray[i].address.city}.`;
 
-            divArray[i].appendChild(usersInfo);
-            divArray[i].appendChild(usersClear);
+            divArray[i].append(usersInfo);
+            divArray[i].append(usersClear);
         }
     }
     createElementsUsers()
-    console.log(usersArray) 
 });
