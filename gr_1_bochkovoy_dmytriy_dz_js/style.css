@@ -1,0 +1,18 @@
+.button_info {
+    background-color: rgb(33, 87, 187);
+    color: white;
+    border: 0;
+}
+.button_info:hover {
+    background-color: rgb(71, 124, 221);
+    cursor: pointer;
+}
+.button_clear {
+    background-color: rgb(255, 55, 5);
+    color: white;
+    border: 0;
+}
+.button_clear:hover {
+    background-color: rgb(187, 6, 0);
+    cursor: pointer;
+}
